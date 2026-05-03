@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charlotte IT Social Nexus</title>
+  <style>
+    :root {
+      --navy: #061426;
+      --navy-2: #0A1A2F;
+      --blue: #00C2FF;
+      --cyan: #00E6D0;
+      --white: #FFFFFF;
+      --gray: #B0C4D4;
+      --card: rgba(10, 26, 47, 0.82);
+      --border: rgba(0, 194, 255, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top right, #123c68 0%, var(--navy) 42%, #020814 100%);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(2, 8, 20, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #061426;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      box-shadow: 0 0 24px rgba(0, 194, 255, 0.65);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    nav a:hover {
+      color: var(--cyan);
+    }
+
+    .hero {
+      min-height: 660px;
+      display: grid;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(2, 8, 20, 0.94) 0%, rgba(5, 18, 38, 0.8) 45%, rgba(0, 194, 255, 0.08) 100%),
+        url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1f?auto=format&fit=crop&w=1800&q=80') center/cover;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 80px 22px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .badge {
+      color: var(--cyan);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 0.98;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 22px;
+    }
+
+    h1 span, .gradient-text {
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: var(--gray);
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 13px 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #03101f;
+      box-shadow: 0 0 24px rgba(0, 194, 255, 0.4);
+    }
+
+    .btn-secondary {
+      color: var(--white);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 28px rgba(0, 230, 208, 0.45);
+    }
+
+    .hero-panel {
+      background: rgba(2, 8, 20, 0.68);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 0 50px rgba(0, 194, 255, 0.18);
+    }
+
+    .hero-panel h3 {
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(0, 194, 255, 0.08);
+      border: 1px solid rgba(0, 194, 255, 0.22);
+    }
+
+    .stat strong {
+      font-size: 30px;
+      color: var(--cyan);
+      display: block;
+    }
+
+    section {
+      max-width: 1180px;
+      margin: auto;
+      padding: 82px 22px;
+    }
+
+    .section-title {
+      margin-bottom: 32px;
+    }
+
+    .section-title small {
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .section-title h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      margin-top: 8px;
+      line-height: 1.1;
+    }
+
+    .grid-4, .grid-3, .grid-2 {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    .card p, .card li {
+      color: var(--gray);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      color: #03101f;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+    }
+
+    .event-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .event-meta {
+      color: var(--cyan);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      border: 1px solid var(--border);
+      color: var(--cyan);
+      border-radius: 999px;
+      padding: 6px 11px;
+      font-size: 12px;
+      background: rgba(0, 194, 255, 0.08);
+    }
+
+    .media-box {
+      min-height: 210px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(0,194,255,0.24), rgba(0,230,208,0.08)), #081a2f;
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      color: var(--gray);
+      text-align: center;
+      padding: 20px;
+    }
+
+    .timeline {
+      border-left: 2px solid var(--border);
+      padding-left: 26px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -36px;
+      top: 6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 20px var(--cyan);
+    }
+
+    .cta {
+      max-width: 1180px;
+      margin: 50px auto 80px;
+      padding: 56px 30px;
+      border-radius: 34px;
+      background: linear-gradient(135deg, rgba(0, 194, 255, 0.24), rgba(0, 230, 208, 0.16));
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: clamp(32px, 5vw, 58px);
+      margin-bottom: 12px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: rgba(2, 8, 20, 0.9);
+      padding: 32px 22px;
+      color: var(--gray);
+      text-align: center;
+    }
+
+    .form-shell {
+      background: rgba(255,255,255,0.04);
+      border: 1px dashed var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      color: var(--gray);
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner, .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a class="brand" href="#home">
+        <div class="brand-mark">IT</div>
+        <span>Charlotte IT Social Nexus</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#upcoming">Upcoming Events</a></li>
+          <li><a href="#past">Past Events</a></li>
+          <li><a href="#media">Media</a></li>
+          <li><a href="#community">Community</a></li>
+          <li><a href="#join">Join</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="badge">Connect • Collaborate • Technology</div>
+          <h1>Charlotte <span>IT</span><br />Social Nexus</h1>
+          <p>Connecting IT professionals, architects, engineers, cloud leaders, cybersecurity experts, AI builders, and technology enthusiasts through events, learning, and community.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#upcoming">View Upcoming Events</a>
+            <a class="btn btn-secondary" href="#join">Join the Community</a>
+          </div>
+        </div>
+        <div class="hero-panel">
+          <h3>Community Event Hub</h3>
+          <div class="stats">
+            <div class="stat"><strong>01</strong><span>Monthly meetups</span></div>
+            <div class="stat"><strong>04</strong><span>Core pillars</span></div>
+            <div class="stat"><strong>∞</strong><span>Ideas shared</span></div>
+            <div class="stat"><strong>CLT</strong><span>Tech network</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <small>About the Nexus</small>
+        <h2>A modern community for technology professionals in and around Charlotte.</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Why this community exists</h3>
+          <p>Charlotte IT Social Nexus is designed to bring people together beyond job titles. The group creates a place for meaningful networking, practical knowledge sharing, professional growth, and collaboration across cloud, infrastructure, AI, cybersecurity, data, software, and operations.</p>
+        </div>
+        <div class="card">
+          <h3>What this site manages</h3>
+          <ul>
+            <li>Upcoming community events and registrations</li>
+            <li>Past event highlights and speaker notes</li>
+            <li>Embedded YouTube sessions and photo galleries</li>
+            <li>Community announcements and membership links</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <small>Core Pillars</small>
+        <h2>Connect. Collaborate. Learn. Lead.</h2>
+      </div>
+      <div class="grid-4">
+        <div class="card"><div class="icon">01</div><h3>Connect</h3><p>Meet IT professionals, leaders, mentors, and peers across the Charlotte technology ecosystem.</p></div>
+        <div class="card"><div class="icon">02</div><h3>Collaborate</h3><p>Share real-world challenges, architecture ideas, lessons learned, and practical solutions.</p></div>
+        <div class="card"><div class="icon">03</div><h3>Learn</h3><p>Explore cloud, AI, cybersecurity, SRE, DevOps, networking, data, and emerging technology topics.</p></div>
+        <div class="card"><div class="icon">04</div><h3>Lead</h3><p>Give talks, host panels, mentor members, and help shape the future of the local tech community.</p></div>
+      </div>
+    </section>
+
+    <section id="upcoming">
+      <div class="section-title">
+        <small>Upcoming Events</small>
+        <h2>Featured meetups, workshops, panels, and networking sessions.</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card event-card">
+          <div class="event-meta">June 2026 • Charlotte, NC</div>
+          <h3>AI for Enterprise IT Leaders</h3>
+          <p>A practical session on adopting GenAI responsibly across IT operations, architecture, support, and automation.</p>
+          <div class="tag-row"><span class="tag">AI</span><span class="tag">Leadership</span><span class="tag">Networking</span></div>
+          <a class="btn btn-primary" href="#join">Register</a>
+        </div>
+        <div class="card event-card">
+          <div class="event-meta">July 2026 • Hybrid</div>
+          <h3>Cloud, Security & Reliability Night</h3>
+          <p>Lightning talks from practitioners covering cloud reliability, cybersecurity controls, incident response, and SRE.</p>
+          <div class="tag-row"><span class="tag">Cloud</span><span class="tag">Security</span><span class="tag">SRE</span></div>
+          <a class="btn btn-primary" href="#join">Register</a>
+        </div>
+        <div class="card event-card">
+          <div class="event-meta">August 2026 • Charlotte, NC</div>
+          <h3>Tech Career Growth Mixer</h3>
+          <p>An informal meetup for professionals, job seekers, mentors, and hiring leaders to build meaningful relationships.</p>
+          <div class="tag-row"><span class="tag">Careers</span><span class="tag">Mentorship</span><span class="tag">Community</span></div>
+          <a class="btn btn-primary" href="#join">Register</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="past">
+      <div class="section-title">
+        <small>Past Events</small>
+        <h2>Event archive and community memory.</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item card">
+          <div class="event-meta">May 2026</div>
+          <h3>Charlotte IT Social Nexus Launch Gathering</h3>
+          <p>Community introduction, member networking, and discussion on building a practical event-driven tech group.</p>
+        </div>
+        <div class="timeline-item card">
+          <div class="event-meta">April 2026</div>
+          <h3>Cloud Architecture Roundtable</h3>
+          <p>Open discussion on cloud modernization, hybrid network design, security, and cost-aware architecture decisions.</p>
+        </div>
+        <div class="timeline-item card">
+          <div class="event-meta">March 2026</div>
+          <h3>AI, Automation & Future Skills</h3>
+          <p>Member-led discussion on AI tools, automation workflows, and skills needed for the next decade of IT work.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="media">
+      <div class="section-title">
+        <small>Media Gallery</small>
+        <h2>Videos, images, highlights, and shared learning assets.</h2>
+      </div>
+      <div class="grid-3">
+        <div class="media-box">
+          <div>
+            <h3>YouTube Event Recording</h3>
+            <p>Embed your YouTube event video here.</p>
+          </div>
+        </div>
+        <div class="media-box">
+          <div>
+            <h3>Photo Gallery</h3>
+            <p>Add Google Photos, Drive images, or event snapshots.</p>
+          </div>
+        </div>
+        <div class="media-box">
+          <div>
+            <h3>Speaker Slides</h3>
+            <p>Link to Google Drive, PDFs, or presentation notes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="community">
+      <div class="section-title">
+        <small>Community</small>
+        <h2>Who should join?</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card"><h3>IT Professionals</h3><p>Engineers, architects, developers, analysts, admins, managers, and leaders looking to grow their network.</p></div>
+        <div class="card"><h3>Students & Career Changers</h3><p>People entering technology who want mentorship, exposure, and practical learning opportunities.</p></div>
+        <div class="card"><h3>Speakers & Mentors</h3><p>Experienced professionals who want to share knowledge and help develop the Charlotte tech ecosystem.</p></div>
+      </div>
+    </section>
+
+    <section id="join">
+      <div class="section-title">
+        <small>Join / Contact</small>
+        <h2>Become part of the Nexus.</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Membership & Event Updates</h3>
+          <p>Use this section to embed a Google Form for joining the group, registering for events, volunteering, or proposing a talk.</p>
+          <br />
+          <a class="btn btn-primary" href="https://forms.google.com" target="_blank">Replace With Google Form Link</a>
+        </div>
+        <div class="form-shell">
+          <h3>Google Form Embed Placeholder</h3>
+          <p>In Google Sites, use Insert → Forms and select your membership or event registration form.</p>
+          <br />
+          <p><strong>Suggested fields:</strong> Name, Email, Role, Company, Areas of Interest, Would you like to speak?, Would you like to volunteer?</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta">
+      <h2>One Community. Endless Possibilities.</h2>
+      <p>Connect with local IT professionals. Collaborate on real-world challenges. Learn emerging technologies. Lead the next wave of innovation.</p>
+      <br />
+      <a class="btn btn-primary" href="#upcoming">Explore Events</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Charlotte IT Social Nexus • Connect • Collaborate • Technology</p>
+  </footer>
+</body>
+</html>
